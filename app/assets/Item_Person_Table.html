@@ -1,0 +1,88 @@
+<html xmlns:mso="urn:schemas-microsoft-com:office:office" xmlns:msdt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"> 
+<head>
+<title>People Table Item</title>
+
+<!--[if gte mso 9]><xml>
+<mso:CustomDocumentProperties>
+<mso:TemplateHidden msdt:dt="string">0</mso:TemplateHidden>
+<mso:MasterPageDescription msdt:dt="string">Displays a result tailored for a person.</mso:MasterPageDescription>
+<mso:ContentTypeId msdt:dt="string">0x0101002039C03B61C64EC4A04F5361F385106603</mso:ContentTypeId>
+<mso:TargetControlType msdt:dt="string">;#SearchResults;#</mso:TargetControlType>
+<mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
+<mso:CrawlerXSLFile msdt:dt="string"></mso:CrawlerXSLFile>
+<mso:ManagedPropertyMapping msdt:dt="string">'AboutMe':'AboutMe','AccountName':'AccountName','BaseOfficeLocation':'BaseOfficeLocation','Department':'Department','HitHighlightedProperties':'HitHighlightedProperties','Interests':'Interests','JobTitle':'JobTitle','LastModifiedTime':'LastModifiedTime','Memberships':'Memberships','PastProjects':'PastProjects','Path':'Path','PictureURL':'PictureURL','PreferredName':'PreferredName','Responsibilities':'Responsibilities','Schools':'Schools','ServiceApplicationID':'ServiceApplicationID','SipAddress':'SipAddress','Skills':'Skills','UserProfile_GUID':'UserProfile_GUID','WorkEmail':'WorkEmail','WorkId':'WorkId','WorkPhone':'WorkPhone','YomiDisplayName':'YomiDisplayName'</mso:ManagedPropertyMapping>
+<mso:HtmlDesignPreviewUrl msdt:dt="string"></mso:HtmlDesignPreviewUrl>
+<mso:HtmlDesignConversionSucceeded msdt:dt="string">True</mso:HtmlDesignConversionSucceeded>
+<mso:HtmlDesignStatusAndPreview msdt:dt="string">http://sharepoint/sites/search/_catalogs/masterpage/Display Templates/Search/Item_Person_Table.html, Conversion successful.</mso:HtmlDesignStatusAndPreview>
+</mso:CustomDocumentProperties>
+</xml><![endif]-->
+</head>
+<body>
+    <div id="Item_Person">
+<!--#_ 
+                    if(!$isNull(ctx.CurrentItem) && !$isNull(ctx.ClientControl)){
+                        var id = ctx.ClientControl.get_nextUniqueId();
+                        var itemId = id + Srch.U.Ids.item;
+                        var hoverId = id + Srch.U.Ids.hover;
+                        $setResultItem(itemId, ctx.CurrentItem);
+                        var container_id = id + "_peopleContainer";
+                        var hhProps = Srch.U.createXMLDocument("<root>" + ctx.CurrentItem.HitHighlightedProperties + "</root>");
+                        var encodedPath = $urlHtmlEncode(ctx.CurrentItem.Path);
+                        var has_pn = !$isEmptyString(ctx.CurrentItem.PreferredName);
+                        var has_sip = !$isEmptyString(ctx.CurrentItem.SipAddress);
+                        var has_email = !$isEmptyString(ctx.CurrentItem.WorkEmail);
+                        var has_jt = !$isEmptyString(ctx.CurrentItem.JobTitle);
+                        var has_dp = !$isEmptyString(ctx.CurrentItem.Department);
+                        var has_abme = !$isEmptyString(ctx.CurrentItem.AboutMe);
+                        var has_resp = !$isEmptyString(ctx.CurrentItem.Responsibilities);
+                        var has_pp = !$isEmptyString(ctx.CurrentItem.PastProjects);
+                        var has_ski = !$isEmptyString(ctx.CurrentItem.Skills);
+                        var has_sch = !$isEmptyString(ctx.CurrentItem.Schools);
+                        var has_int = !$isEmptyString(ctx.CurrentItem.Interests);
+                        var has_vlm = !$isEmptyString(ctx.CurrentItem.ProfileViewsLastMonth);
+                        var has_vlw = !$isEmptyString(ctx.CurrentItem.ProfileViewsLastWeek);
+                        var has_query = !$isEmptyString(ctx.CurrentItem.ProfileQueriesFoundYou); 
+                        var isSelfSrch = (has_vlm == true || has_vlw == true || has_query == true);
+                        var delimiter = "";
+                        var userPersonaId = $htmlEncode(id) + "_peopleUserPersona";
+                        var uSip = ctx.CurrentItem.SipAddress;
+                        var uEmail = ctx.CurrentItem.WorkEmail;
+                        var uName = ctx.CurrentItem.PreferredName;
+                        var uPicUrl = ctx.CurrentItem.PictureURL;
+                        var hoverUrl = "~sitecollection/_catalogs/masterpage/Display Templates/Search/Item_Person_HoverPanel.js";
+                        
+                        var encodedName = (has_pn == true) ? $htmlEncode(ctx.CurrentItem.PreferredName) : $htmlEncode(ctx.CurrentItem.YomiDisplayName);
+                        var displayName = Srch.U.getSingleHHXMLNodeValue(hhProps, "preferredname");
+                        if ($isEmptyString(displayName)) { displayName = encodedName }
+                      
+                        if(has_jt == true) {
+                          var encodedJtitle = $htmlEncode(ctx.CurrentItem.JobTitle);
+                          var displayJtitle = Srch.U.getSingleHHXMLNodeValue(hhProps, "jobtitle");
+                          if ($isEmptyString(displayJtitle)) { displayJtitle = encodedJtitle }
+                        }
+                        
+                        if(has_dp == true) {
+                          var encodedDept = $htmlEncode(ctx.CurrentItem.Department);
+                          var displayDept = Srch.U.getSingleHHXMLNodeValue(hhProps, "department");
+                          if ($isEmptyString(displayDept)) { displayDept = encodedDept }
+                        }
+                        
+                        
+_#-->
+
+                        <tr>
+                            <td class="ms-vb2"><a clicktype="Result" id="NameFieldLink" href="_#= encodedPath =#_" title="_#= encodedName =#_">_#= displayName =#_</a></td>
+                            <td class="ms-vb2">_#=ctx.CurrentItem.WorkPhone=#_</td>
+                            <td class="ms-vb2"><a href="mailto:_#=uEmail=#_">_#=uEmail=#_</a></td>
+                            <td class="ms-vb2">_#= displayJtitle =#_</td>
+                            <td class="ms-vb2">_#= displayDept =#_</td>
+                            <td class="ms-vb2">_#= ctx.CurrentItem.BaseOfficeLocation =#_</td>
+                        </tr>
+
+              
+<!--#_ 
+                } 
+_#-->
+    </div>
+</body>
+</html>
