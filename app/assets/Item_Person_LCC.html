@@ -15,7 +15,7 @@
 <mso:TargetControlType msdt:dt="string">;#SearchResults;#</mso:TargetControlType>
 <mso:HtmlDesignAssociated msdt:dt="string">1</mso:HtmlDesignAssociated>
 <mso:CrawlerXSLFile msdt:dt="string"></mso:CrawlerXSLFile>
-<mso:ManagedPropertyMapping msdt:dt="string">'AboutMe':'AboutMe','AccountName':'AccountName','BaseOfficeLocation':'BaseOfficeLocation','Department':'Department','HitHighlightedProperties':'HitHighlightedProperties','Interests':'Interests','JobTitle':'JobTitle','LastModifiedTime':'LastModifiedTime','Memberships':'Memberships','PastProjects':'PastProjects','Path':'Path','PictureURL':'PictureURL','PreferredName':'PreferredName','Responsibilities':'Responsibilities','Schools':'Schools','ServiceApplicationID':'ServiceApplicationID','SipAddress':'SipAddress','Skills':'Skills','UserProfile_GUID':'UserProfile_GUID','WorkEmail':'WorkEmail','WorkPhone':'WorkPhone','WorkId':'WorkId','YomiDisplayName':'YomiDisplayName'</mso:ManagedPropertyMapping>
+<mso:ManagedPropertyMapping msdt:dt="string">'AboutMe':'AboutMe','AccountName':'AccountName','BaseOfficeLocation':'BaseOfficeLocation','Department':'Department','HitHighlightedProperties':'HitHighlightedProperties','Interests':'Interests','JobTitle':'JobTitle','LastModifiedTime':'LastModifiedTime','Memberships':'Memberships','PastProjects':'PastProjects','Path':'Path','PictureURL':'PictureURL','PreferredName':'PreferredName','Responsibilities':'Responsibilities','Schools':'Schools','ServiceApplicationID':'ServiceApplicationID','SipAddress':'SipAddress','Skills':'Skills','UserProfile_GUID':'UserProfile_GUID','LCCPhoneInternal':'LCCPhoneInternal','MobilePhone':'MobilePhone',WorkEmail':'WorkEmail','WorkPhone':'WorkPhone','WorkId':'WorkId','YomiDisplayName':'YomiDisplayName'</mso:ManagedPropertyMapping>
 </mso:CustomDocumentProperties>
 </xml><![endif]-->
 </head>
@@ -45,6 +45,7 @@
                         var has_vlm = !$isEmptyString(ctx.CurrentItem.ProfileViewsLastMonth);
                         var has_vlw = !$isEmptyString(ctx.CurrentItem.ProfileViewsLastWeek);
                         var has_query = !$isEmptyString(ctx.CurrentItem.ProfileQueriesFoundYou); 
+                        var has_pi = !$isEmptyString(ctx.CurrentItem.LCCPhoneInternal);
                         var isSelfSrch = (has_vlm == true || has_vlw == true || has_query == true);
                         var delimiter = "";
                         var userPersonaId = $htmlEncode(id) + "_peopleUserPersona";
@@ -104,19 +105,20 @@ _#-->
                                             </div>
 <!--#_ 
                                         }
-
-                                        if(has_email == true) {
 _#-->
-                                            <div id="WorkEmailField">
-                                                <div id="WorkEmailValue" class="ms-srch-ellipsis" title="_#= uEmail =#_ ">
-                                                    <a href="mailto:_#= uEmail =#_ ">_#= uEmail =#_ 
-                                                    </a>
-                                                    </div>
-                                            </div>
+                                    <div id="InternalPhoneField">
 <!--#_ 
-                                        }
-_#-->
+                                                var encodedIphone = $htmlEncode(ctx.CurrentItem.LCCPhoneInternal);
+_#--> 
+                                        <div id="InternalPhoneValue" class="ms-srch-ellipsis" title="_#= encodedIphone =#_">Internal: _#= encodedIphone =#_ </div>
+                                    </div>
 
+                                    <div id="MobilePhoneField">
+<!--#_ 
+                                                var encodedMphone = $htmlEncode(ctx.CurrentItem.MobilePhone);
+_#--> 
+                                        <div id="MobilePhoneValue" class="ms-srch-ellipsis" title="_#= encodedMphone =#_">Mobile: _#= encodedMphone =#_ </div>
+                                    </div>
 <!--#_ 
                                         if(has_wp == true) {
 _#-->
@@ -125,6 +127,17 @@ _#-->
                                                 var encodedWphone = $htmlEncode(ctx.CurrentItem.WorkPhone);
 _#--> 
                                                 <div id="WorkPhoneValue" class="ms-srch-ellipsis" title="_#= encodedWphone =#_">Work: _#= encodedWphone =#_ </div>
+                                            </div>
+<!--#_ 
+                                        }
+
+                                        if(has_email == true) {
+_#-->
+                                            <div id="WorkEmailField">
+                                                <div id="WorkEmailValue" class="ms-srch-ellipsis" title="_#= uEmail =#_ ">
+                                                    <a href="mailto:_#= uEmail =#_ ">_#= uEmail =#_ 
+                                                    </a>
+                                                    </div>
                                             </div>
 <!--#_ 
                                         }
